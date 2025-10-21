@@ -60,7 +60,7 @@ class ApiClient:
             response = self.session.post(url, json=payload,timeout=Timeouts.TIMEOUT)
             response.raise_for_status()
         with allure.step("Checking status code"):
-            assert response.status_code ==200, f"Expected status code 201, but get {response.status_code}"
+            assert response.status_code == 200, f"Expected status code 200, but get {response.status_code}"
         token = response.json().get("token")
         with allure.step("Updating header with autorization"):
             self.session.headers.update({"Autorization": f"Bearer{token}"})
@@ -71,7 +71,7 @@ class ApiClient:
             response = self.session.get(url, timeout=Timeouts.TIMEOUT)
             response.raise_for_status()
         with allure.step("Checking status code"):
-            assert response.status_code == 200, f"Expected status code 201, but get {response.status_code}"
+            assert response.status_code == 200, f"Expected status code 200, but get {response.status_code}"
         return response.json()["object"]
 
 
