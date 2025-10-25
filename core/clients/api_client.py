@@ -1,5 +1,4 @@
-from http.client import responses
-
+import pytest
 import requests
 import os
 from dotenv import load_dotenv
@@ -12,11 +11,11 @@ load_dotenv()
 
 class ApiClient:
     def __init__(self):
-        environment_str = os.getenv("Environment")
+        ENVIRONMENT_STR = os.getenv("Environment")
         try:
-            environment = Environment[environment_str]
+            environment = Environment[ENVIRONMENT_STR]
         except KeyError:
-            raise ValueError (f"unsupported environment value: {environment_str}")
+            raise ValueError (f"unsupported environment value: {ENVIRONMENT_STR}")
 
         self.base_url = self.get_base_url(environment)
         self.session = requests.Session()
@@ -65,13 +64,13 @@ class ApiClient:
         with allure.step("Updating header with autorization"):
             self.session.headers.update({"Autorization": f"Bearer{token}"})
 
-    def get_booking_by_id(self):
-        with allure.step("Get booking IDs"):
-            url = f"{self.base_url}{Endpoints.BOOKING_ENDPOINT}"
+
+    def get_booking_by_id(self,bookingid):
+        with allure.step("Get booking info"):
+            url = f"{self.base_url}{Endpoints.BOOKING_ENDPOINT}/{bookingid}"
             response = self.session.get(url, timeout=Timeouts.TIMEOUT)
-            response.raise_for_status()
-        with allure.step("Checking status code"):
-            assert response.status_code == 200, f"Expected status code 200, but get {response.status_code}"
-        return response.json()["object"]
+            with allure.step("Checking status code"):
+                assert response.status_code == 200, f"Expected status code 200, but get {response.status_code}"
+        return response.json()
 
 
