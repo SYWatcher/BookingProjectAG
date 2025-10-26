@@ -11,7 +11,7 @@ load_dotenv()
 
 class ApiClient:
     def __init__(self):
-        ENVIRONMENT_STR = os.getenv("Environment")
+        ENVIRONMENT_STR = os.getenv("ENVIRONMENT")
         try:
             environment = Environment[ENVIRONMENT_STR]
         except KeyError:
@@ -65,9 +65,9 @@ class ApiClient:
             self.session.headers.update({"Autorization": f"Bearer{token}"})
 
 
-    def get_booking_by_id(self,bookingid):
+    def get_booking_by_id(self,booking_id):
         with allure.step("Get booking info"):
-            url = f"{self.base_url}{Endpoints.BOOKING_ENDPOINT}/{bookingid}"
+            url = f"{self.base_url}{Endpoints.BOOKING_ENDPOINT}/{booking_id}"
             response = self.session.get(url, timeout=Timeouts.TIMEOUT)
             with allure.step("Checking status code"):
                 assert response.status_code == 200, f"Expected status code 200, but get {response.status_code}"
