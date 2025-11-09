@@ -20,10 +20,7 @@ class ApiClient:
 
         self.base_url = self.get_base_url(environment)
         self.session = requests.Session()
-        self.session.headers = {
-            "Content-Type":"application/json",
-            "Accept": "application/json"
-        }
+
     def get_base_url(self, environment : Environment) -> str:
         if environment == Environment.TEST:
             return os.getenv("TEST_BASE_URL")
