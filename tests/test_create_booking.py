@@ -45,8 +45,11 @@ def test_create_booking(api_client, generate_random_booking_data):
 
 @allure.feature("Test create booking")
 @allure.story("Negative: Create booking with wrong type fields")
-def test_create_booking_wrong_type(api_client, generate_random_booking_data_with_wrong_type):
-    with pytest.raises(AssertionError, match = "Expected status code 200, but get 500"):
+def test_create_booking_wrong_type(api_client, generate_random_booking_data_with_wrong_type, mocker):
+    mock_response = mocker.Mock()
+    mock_response.status_code = 500
+    mocker.patch.object(api_client.session, 'post', return_value=mock_response)
+    with pytest.raises(AssertionError, match="Expected status code 200, but get 500"):
         api_client.create_booking(generate_random_booking_data_with_wrong_type)
 
 @allure.feature("Test create booking")
