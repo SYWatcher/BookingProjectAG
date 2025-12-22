@@ -19,6 +19,8 @@ urllib3==2.5.0
 Faker==18.0.0
 dotenv==0.9.9
 allure-pytest==2.15.0
+pytest-mock==3.12.0
+
 
 
 
