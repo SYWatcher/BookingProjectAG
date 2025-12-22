@@ -17,4 +17,5 @@ typing-inspection==0.4.2
 typing_extensions==4.15.0
 urllib3==2.5.0
 Faker==18.0.0
+dotenv==1.0.0
 
