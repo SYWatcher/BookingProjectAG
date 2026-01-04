@@ -6,13 +6,15 @@ agent any
   // Шаг создания виртуального окружения и активации его
   sh 'python3 -m venv venv'
   sh '. venv/bin/activate'
+  echo "PROD_BASE_URL=https://restful-booker.herokuapp.com/" > .env
     // Установка зависимостей из requirements.txt
  sh 'pip install -r requirements.txt --break-system-packages'
   }
   }
  stage('Run Tests') {
  steps {
- // Запуск тестов и генерация отчета allure
+ // Запуск тестов и генерация отчета allurepython3 -m venv venv
+
  sh 'python3 -m pytest --alluredir allure-results'
  }}
 stage('Generate Allure Report') {
