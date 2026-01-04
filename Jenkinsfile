@@ -8,7 +8,7 @@ agent any
   sh '. venv/bin/activate'
     // Установка зависимостей из requirements.txt
  sh 'pip install -r requirements.txt --break-system-packages'
-echo "PROD_BASE_URL=https://restful-booker.herokuapp.com/" > .env
+'echo "PROD_BASE_URL=https://restful-booker.herokuapp.com/" > .env'
   }
   }
  stage('Run Tests') {
