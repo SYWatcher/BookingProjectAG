@@ -13,8 +13,7 @@ sh 'echo "PROD_BASE_URL=https://restful-booker.herokuapp.com/" > .env'
   }
  stage('Run Tests') {
  steps {
- // Запуск тестов и генерация отчета allurepython3 -m venv venv
-
+ // Запуск тестов и генерация отчета allure
  sh 'python3 -m pytest --alluredir allure-results'
  }}
 stage('Generate Allure Report') {
