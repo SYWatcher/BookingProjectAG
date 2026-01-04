@@ -6,6 +6,8 @@ agent any
   // Шаг создания виртуального окружения и активации его
   sh 'python3 -m venv venv'
   sh '. venv/bin/activate'
+  }
+  }
  stage('Run Tests') {
  steps {
  // Запуск тестов и генерация отчета allure
@@ -33,6 +35,4 @@ failure {
  echo 'The build failed!'
  }
  }
-}
-  }
 }
