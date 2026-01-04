@@ -6,9 +6,9 @@ agent any
   // Шаг создания виртуального окружения и активации его
   sh 'python3 -m venv venv'
   sh '. venv/bin/activate'
-  echo "PROD_BASE_URL=https://restful-booker.herokuapp.com/" > .env
     // Установка зависимостей из requirements.txt
  sh 'pip install -r requirements.txt --break-system-packages'
+echo "PROD_BASE_URL=https://restful-booker.herokuapp.com/" > .env
   }
   }
  stage('Run Tests') {
